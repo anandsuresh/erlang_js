@@ -1,0 +1,12 @@
+--- nsprpub.old/pr/src/pthreads/ptsynch.c	2009-03-18 14:29:32.000000000 -0700
++++ nsprpub/pr/src/pthreads/ptsynch.c	2019-07-26 14:33:52.000000000 -0700
+@@ -828,7 +828,8 @@
+  * From the semctl(2) man page in glibc 2.0
+  */
+ #if (defined(__GNU_LIBRARY__) && !defined(_SEM_SEMUN_UNDEFINED)) \
+-    || defined(FREEBSD) || defined(OPENBSD) || defined(BSDI) \
++    || (defined(FREEBSD) && __FreeBSD_version < 1200059) \
++    || defined(OPENBSD) || defined(BSDI) \
+     || defined(DARWIN) || defined(SYMBIAN)
+ /* union semun is defined by including <sys/sem.h> */
+ #else
