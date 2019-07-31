@@ -32,7 +32,7 @@ $(LIB_DIR)/libjs.a: $(LIB_DIR)/libnspr4.a
 	@$(MAKE) -C $(JS_DIR)/src BUILD_OPT=1 JS_DIST=$(SYSTEM_DIR) \
 		JS_THREADSAFE=1 \
 		XCFLAGS="-DHAVE_VA_COPY -DVA_COPY=va_copy $(CFLAGS)" \
-		XLDFLAGS="$(LDFLAGS)" \
+		XLDFLAGS="-L /usr/local/lib -L /usr/lib -L /lib $(LDFLAGS)" \
 		-f Makefile.ref
 	@mkdir $(INC_DIR)/js
 	@cp $(JS_DIR)/src/*.h $(INC_DIR)/js
